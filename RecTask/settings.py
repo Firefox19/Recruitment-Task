@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,11 +77,11 @@ WSGI_APPLICATION = 'RecTask.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': 'localhost',
-        'NAME': 'grading',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': '***',
-        'PASSWORD': '***',
+        'HOST': '',
+        'NAME': '',
+        'ENGINE': '',
+        'USER': '',
+        'PASSWORD': '',
     }
 }
 
@@ -122,3 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
