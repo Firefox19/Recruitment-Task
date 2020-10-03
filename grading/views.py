@@ -1,7 +1,7 @@
 from django.views.generic.edit import FormView
 from grading.forms import GradingForm
 from grading.models import Grade, Candidate
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views import View
 
 
@@ -17,7 +17,7 @@ class GradingView(FormView):
         grade = form.cleaned_data['grade']
 
         if len(Grade.objects.filter(task=task, candidate=candidate)) is not 0:
-            raise Exception('The task has already been graded!')
+            return HttpResponse('This task has already been graded!')
 
         else:
             Grade.objects.create(recruiter=recruiter, candidate=candidate, task=task, value=grade)
