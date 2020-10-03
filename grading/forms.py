@@ -11,18 +11,8 @@ GRADES = (
 )
 
 
-class MyModelChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        try:
-            obj.first_name
-            return obj.first_name + ' ' + obj.last_name
-
-        except:
-            return obj.title
-
-
 class GradingForm(forms.Form):
-    recruiter = MyModelChoiceField(queryset=Recruiter.objects.all())
-    candidate = MyModelChoiceField(queryset=Candidate.objects.all())
-    task = MyModelChoiceField(queryset=Task.objects.all())
+    recruiter = forms.ModelChoiceField(queryset=Recruiter.objects.all())
+    candidate = forms.ModelChoiceField(queryset=Candidate.objects.all())
+    task = forms.ModelChoiceField(queryset=Task.objects.all())
     grade = forms.ChoiceField(choices=GRADES)
